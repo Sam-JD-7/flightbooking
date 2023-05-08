@@ -46,9 +46,20 @@ const getbynumber =(req,res)=>{
         res.send(err)
     })
 }
+
+const deleteOne = (req,res) =>{
+    model.deleteOne({_id:req.body.id}).exec()
+    .then (async(response) => {
+        res.send(await model.find({}))
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
 module.exports ={
     add,
     get,
     deleteAll,
-    getbynumber
+    getbynumber,
+    deleteOne
 }

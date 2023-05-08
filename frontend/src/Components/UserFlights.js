@@ -48,6 +48,7 @@ function UserFlights() {
               list[i].book = false;
               list[i].popUp = false ;
             }
+            setflag(!flag)
             alert("Booked successfully...")
           })
           .catch(err=>{
@@ -63,9 +64,11 @@ function UserFlights() {
       console.log(tickets)
       list[index].book =true
       list[index].popUp = false
+      setflag(!flag)
     };
   
     const handleCancel = (index) => {
+      setflag(!flag)
       list[index].popUp = false
     };
 
@@ -75,6 +78,7 @@ function UserFlights() {
           <td>{x.flight_no}</td>
           <td>{x.arrival_at}</td>
           <td>{x.depart_at}</td>
+          <td>{x.date}</td>
           <td>{x.arrival_time}</td>
           <td>{x.depart_time}</td>
           <td>{x.available_seats}</td>
@@ -144,6 +148,7 @@ function UserFlights() {
           <th>Flight No.</th>
           <th>From</th>
           <th>To</th>
+          <th>Date</th>
           <th>Arrive At</th>
           <th>Depart At</th>
           <th>Available Seats</th>
@@ -154,7 +159,7 @@ function UserFlights() {
           {content}
         </tbody>
       </table>
-      <button onClick={d}>del</button>
+      {/* <button onClick={d}>del</button> */}s
     </div>
   )
 }

@@ -58,6 +58,7 @@ function AdminFlights() {
           <td>{x.flight_no}</td>
           <td>{x.arrival_at}</td>
           <td>{x.depart_at}</td>
+          <td>{x.date}</td>
           <td><button onClick={()=>handleEdit(x._id,x.flight_name,x.flight_no,x.arrival_at,x.depart_at,x.arrival_time,x.depart_time,x.total_seats,x.available_seats,x.ticket_price,x.date)}>View /Edit</button></td>
           <td><button onClick={()=>handleRemove(x._id)}>Remove</button></td>
           <td><button onClick={()=>handleBookings(x)}>View</button></td>
@@ -75,6 +76,7 @@ function AdminFlights() {
                 <th>Flight No.</th>
                 <th>From</th>
                 <th>To</th>
+                <th>Date</th>
                 <th>View/Edit</th>
                 <th>Remove</th>
                 <th>View Bookings</th>

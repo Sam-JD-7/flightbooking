@@ -17,6 +17,16 @@ function MyBookings() {
       })
   }, [])
 
+  const handleCancel =(id) => {
+    axios.delete("/bookings/delete" ,{id : id})
+    .then(res => {
+      setTickets(res.data)
+    })
+    .catch (err => {
+      console.log(err)
+    })
+  }
+
   const content = tickets.map((x) => (
     <div key={x._id} className="ticket card">
       <div className="flight-name">
@@ -50,7 +60,8 @@ function MyBookings() {
       <div className="num-tickets">
             <div className="label">Booked On</div>
             <div className="value">{x.booked_date}</div>
-        </div>
+      </div>
+      <button onClick={()=>handleCancel(x._id)}>Cancel Booking</button>
     </div>
   ))
 
