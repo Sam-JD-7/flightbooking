@@ -5,8 +5,6 @@ import '../styles/style.css'
 import Popup from './PopUp';
 function UserFlights() {
     const[list,setList] = useState([])
-    const[showPopup,setShowPopup] = useState(false)
-    const[book,setBook] = useState(false)
     const[tickets,setTickets] = useState(0)
     const[filter,setFilter] = useState(false)
     const[search,setSearch] = useState({
@@ -18,13 +16,17 @@ function UserFlights() {
         axios.get("/flights/all")
         .then(res=>{
             setList(res.data);
+            for (let i = 0; i < list.length; i++) {
+              list[i].book = false;
+              list[i].popUp = false ;
+            }
         })
         .catch(err=>{
           console.log(err)
         })
     },[])
-    const handleBooking =(x)=>{
-        setBook(false)
+    const handleBooking =(x,index)=>{
+        list[index].book = false
         axios.post("/bookings/add",{
           passenger_name : localStorage.getItem("username"),
           passenger_mail : localStorage.getItem("usermail"),
@@ -41,6 +43,10 @@ function UserFlights() {
           axios.put("/flights/edit",{id:x._id,...x,available_seats:x.available_seats-tickets})
           .then(res=>{
             setList(res.data)
+            for (let i = 0; i < list.length; i++) {
+              list[i].book = false;
+              list[i].popUp = false ;
+            }
             alert("Booked successfully...")
           })
           .catch(err=>{
@@ -51,18 +57,18 @@ function UserFlights() {
           console.log(err)
         })
     }
-    const handleSubmit = async(value) => {
-      await setTickets(value)
+    const handleSubmit = (index,value) => {
+      setTickets(value)
       console.log(tickets)
-      setShowPopup(false);
-      setBook(true)
+      list[index].book =true
+      list[index].popUp = false
     };
   
-    const handleCancel = () => {
-      setShowPopup(false);
+    const handleCancel = (index) => {
+      list[index].popUp = false
     };
 
-    var content = list.map((x)=>
+    var content = list.map(async(x,index)=>
       <tr key={x._id}>
           <td>{x.flight_name}</td>
           <td>{x.flight_no}</td>
@@ -72,12 +78,20 @@ function UserFlights() {
           <td>{x.depart_time}</td>
           <td>{x.available_seats}</td>
           <td>{x.ticket_price}</td>
-          <td><button onClick={()=>setShowPopup(true)}>Book Now</button></td>
-          {showPopup && <Popup onSubmit={handleSubmit} onCancel={handleCancel}/>}
-          {book && handleBooking(x)}
+          <td><button onClick={()=>x.popUp=true}>Book Now</button></td>
+          {x.popUp && <Popup x={index} onSubmit={handleSubmit} onCancel={handleCancel}/>}
+          {x.book && handleBooking(x,index)}
       </tr>
     )
-
+    const d = () => {
+      axios.delete("/bookings/deleteall")
+      .then(res => {
+        console.log(res)
+      })
+      .catch (err => {
+        console.log(err)
+      })
+    }
     const handleChange = (e) => {
       setSearch(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
     }
@@ -139,6 +153,7 @@ function UserFlights() {
           {content}
         </tbody>
       </table>
+      <button onClick={d}>del</button>
     </div>
   )
 }
