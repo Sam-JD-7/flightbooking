@@ -47,8 +47,8 @@ const getbynumber =(req,res)=>{
     })
 }
 
-const deleteOne = (req,res) =>{
-    model.deleteOne({_id:req.body.id}).exec()
+const deletebyId = (req,res) =>{
+    model.deleteMany({_id:req.body.id}).exec()
     .then (async(response) => {
         res.send(await model.find({}))
     })
@@ -61,5 +61,5 @@ module.exports ={
     get,
     deleteAll,
     getbynumber,
-    deleteOne
+    deletebyId
 }

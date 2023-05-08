@@ -18,8 +18,9 @@ function MyBookings() {
   }, [])
 
   const handleCancel =(id) => {
-    axios.delete("/bookings/delete" ,{id : id})
+    axios.delete("/bookings/deletebyId" ,{id : id})
     .then(res => {
+      console.log("success")
       setTickets(res.data)
     })
     .catch (err => {
