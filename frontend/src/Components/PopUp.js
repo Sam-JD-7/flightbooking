@@ -1,15 +1,15 @@
 import React from "react";
 import '../styles/popup.css'
-const Popup = ({ onSubmit, onCancel }) => {
+const Popup = ({ x, onSubmit, onCancel }) => {
   const [value, setValue] = React.useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(value);
+    onSubmit(x,value);
   };
 
   const handleCancel = () => {
-    onCancel();
+    onCancel(x);
   };
 
   return (
