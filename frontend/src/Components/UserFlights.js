@@ -159,7 +159,6 @@ function UserFlights() {
           {content}
         </tbody>
       </table>
-      {/* <button onClick={d}>del</button> */}s
     </div>
   )
 }
