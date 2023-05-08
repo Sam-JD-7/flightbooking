@@ -12,6 +12,7 @@ function UserFlights() {
       st_time:"",
       end_time:""
     })
+    const[flag,setflag] = useState(true)
     useEffect(()=>{
         axios.get("/flights/all")
         .then(res=>{
@@ -78,7 +79,7 @@ function UserFlights() {
           <td>{x.depart_time}</td>
           <td>{x.available_seats}</td>
           <td>{x.ticket_price}</td>
-          <td><button onClick={()=>x.popUp=true}>Book Now</button></td>
+          <td><button onClick={()=> (setflag(!flag),x.popUp=true)}>Book Now</button></td>
           {x.popUp && <Popup x={index} onSubmit={handleSubmit} onCancel={handleCancel}/>}
           {x.book && handleBooking(x,index)}
       </tr>
