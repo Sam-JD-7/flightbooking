@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/signup.css'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 function UserSignup() {
     const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     usermail: '',
-    password: '',
+    password: "",
   });
 
   const handleChange = e => {
@@ -18,7 +19,14 @@ function UserSignup() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    navigate("/user/login")
+    axios.post("/user/signup",{name : formData.username , password : formData.password , email :formData.usermail})
+    .then(res=>{
+      console.log(res.data)
+      navigate("/user/login")
+    })
+    .catch(err => {
+      console.log(err)
+    })
   };
 
   return (

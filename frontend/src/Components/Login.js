@@ -52,7 +52,7 @@ function Login() {
     <form className='signup-form'>
       <div className="form-group">
         <label htmlFor="email" className="label">
-          Username:
+          Usermail:
         </label>
         <input type="email" name="email" value={user.email} onChange={handleChange} />
       </div>
