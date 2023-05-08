@@ -22,7 +22,7 @@ function UserSignup() {
     axios.post("/user/signup",{name : formData.username , password : formData.password , email :formData.usermail})
     .then(res=>{
       console.log(res.data)
-      navigate("/user/login")
+      navigate("/user/login");
     })
     .catch(err => {
       console.log(err)
