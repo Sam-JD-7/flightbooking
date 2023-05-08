@@ -68,7 +68,7 @@ function UserFlights() {
       list[index].popUp = false
     };
 
-    var content = list.map(async(x,index)=>
+    var content = list.map((x,index)=>
       <tr key={x._id}>
           <td>{x.flight_name}</td>
           <td>{x.flight_no}</td>

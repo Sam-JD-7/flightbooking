@@ -66,6 +66,9 @@ function Login() {
       {location.pathname ==='/user/login' &&
         <p>Not have a account ?<NavLink to="/user/signup">Signup</NavLink></p>
       }
+      {location.pathname ==='/admin/login' &&
+          <p>Please Give Usermail : "samjd@gmail.com",Password : "samjd"</p>
+      }
     </form>
   </div>
   )
