@@ -68,6 +68,7 @@ function MyBookings() {
 
   return (
     <div className="my-bookings">
+      {tickets.length===0 && <h1>No Bookings Yet</h1>}
       {content}
     </div>
   )

@@ -40,6 +40,7 @@ function UserSignup() {
           <input
             type="text"
             id="username"
+            placeholder='Enter Username'
             name="username"
             value={formData.username}
             onChange={handleChange}
@@ -53,6 +54,7 @@ function UserSignup() {
           <input
             type="email"
             id="usermail"
+            placeholder='Enter Email'
             name="usermail"
             value={formData.usermail}
             onChange={handleChange}
@@ -66,6 +68,7 @@ function UserSignup() {
           <input
             type="password"
             id="password"
+            placeholder='Enter Password'
             name="password"
             value={formData.password}
             onChange={handleChange}

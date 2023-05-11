@@ -54,13 +54,13 @@ function Login() {
         <label htmlFor="email" className="label">
           Usermail:
         </label>
-        <input type="email" name="email" value={user.email} onChange={handleChange} />
+        <input type="email" name="email" placeholder='Enter Email' value={user.email} onChange={handleChange} />
       </div>
       <div className="form-group">
         <label htmlFor="password" className="label">
           Password:
         </label>
-        <input type="password" name ="password" value={user.password} onChange={handleChange} />
+        <input type="password" name ="password" placeholder='Enter Password' value={user.password} onChange={handleChange} />
       </div>
       <button type="button" onClick={handleSubmit} className="submit-btn">Login</button>
       {location.pathname ==='/user/login' &&

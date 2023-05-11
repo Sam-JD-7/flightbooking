@@ -5,5 +5,5 @@ bookingRouter.post("/add",controller.add)
 bookingRouter.post("/get",controller.get)
 bookingRouter.post("/getbynumber",controller.getbynumber)
 bookingRouter.delete("/deleteall",controller.deleteAll)
-bookingRouter.delete("/delete",controller.deletebyId)
+bookingRouter.delete("/deletebyId",controller.deletebyId)
 module.exports = bookingRouter;
