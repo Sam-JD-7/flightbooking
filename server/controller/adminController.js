@@ -1,7 +1,7 @@
 const model = require('../models/adminModel')
 const flightmodel = require('../models/flightModel')
-const login = (req,res)=>{
-    model.findOne({adminmail:req.body.email,password:req.body.password}).exec()
+const login = async(req,res)=>{
+    await model.findOne({adminmail:req.body.email,password:req.body.password}).exec()
     .then(response=>{
         res.send(response)
     })

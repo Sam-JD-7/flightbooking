@@ -1,7 +1,7 @@
 const model = require('../models/userModel')
-const login=(req,res)=>
+const login=async(req,res)=>
 {
-    model.findOne({usermail:req.body.email,password:req.body.password}).exec()
+    await model.findOne({usermail:req.body.email,password:req.body.password}).exec()
     .then(response=>
         {
             res.send(response)
@@ -12,8 +12,8 @@ const login=(req,res)=>
         })
 }
 
-const signup  = (req,res)=>{
-    var insert = new model({
+const signup  = async(req,res)=>{
+    var insert = await new model({
         username : req.body.name,
         password : req.body.password,
         usermail : req.body.email
